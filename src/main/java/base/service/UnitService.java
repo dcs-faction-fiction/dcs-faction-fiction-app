@@ -141,7 +141,7 @@ public class UnitService {
     });
   }
 
-  public UUID buyUnit(
+  public void buyUnit(
     String campaignName, String factionName, Airbases airbase,
     GroundUnit unit, Location location) {
 
@@ -153,8 +153,7 @@ public class UnitService {
       kv("amount", unit.amount()),
       kv("location", location));
 
-    return jdbi.withHandle(h -> {
-      UUID uid = UUID.randomUUID();
+    jdbi.useHandle(h -> {
 
       UUID cfid = campaignService.getCampaignFactionID(campaignName, factionName, airbase)
         .orElseThrow(() -> new NotFoundException("Faction is not registered to this campaign."));
@@ -166,17 +165,17 @@ public class UnitService {
         throw new ServerException(422, "Not enough credits");
       }
 
-      h.execute("insert into campaign_faction_units "
-        + "(id, campaign_faction_id, type, x, y, z, angle) "
-        + "values(?, ?, ?, ?, ?, ?, ?)",
-        uid, cfid, unit, location.longitude(), location.latitude(), location.altitude(), location.angle());
+      for (var i = 0; i < unit.amount(); i++) {
+        UUID uid = UUID.randomUUID();
+        h.execute("insert into campaign_faction_units "
+          + "(id, campaign_faction_id, type, x, y, z, angle) "
+          + "values(?, ?, ?, ?, ?, ?, ?)",
+          uid, cfid, unit, location.longitude(), location.latitude(), location.altitude(), location.angle());
+        enforceUnitRadiusFromAirbase(h, campaignName, factionName, airbase, uid, location);
+      }
 
       h.execute("update campaign_faction set credits = greatest(0, credits - ?) where id = ?",
         unit.cost(), cfid);
-
-      enforceUnitRadiusFromAirbase(h, campaignName, factionName, airbase, uid, location);
-
-      return uid;
     });
   }
 
