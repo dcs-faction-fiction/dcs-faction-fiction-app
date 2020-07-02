@@ -83,6 +83,7 @@ public enum WarehouseItemCode {
   AGM_65_K       (AMMO, "weapons.missiles.AGM_65K", List.of("4", "4", "8", "61")),
 
   AGM_84_D       (AMMO, "weapons.missiles.AGM_84D", List.of("4", "4", "8", "275")),
+  AGM_84_E       (AMMO, "weapons.missiles.AGM_84E", List.of("4", "4", "8", "63")),
   AGM_88_C       (AMMO, "weapons.missiles.AGM_88", List.of("4", "4", "8", "65")),
 
   // A/G missiles - RUS
@@ -102,6 +103,19 @@ public enum WarehouseItemCode {
   GBU_31_V3B     (AMMO, "weapons.bombs.GBU_31_V_3B", List.of("4", "5", "36", "92")),
   GBU_38         (AMMO, "weapons.bombs.GBU_38", List.of("4", "5", "36", "86")),
   AGM_62         (AMMO, "weapons.bombs.AGM_62", List.of("4", "5", "36", "47")),
+
+  MK_81          (AMMO, "weapons.bombs.Mk_81", List.of("4", "5", "9", "30")),
+  MK_82          (AMMO, "weapons.bombs.Mk_82", List.of("4", "5", "9", "31")),
+  MK_83          (AMMO, "weapons.bombs.Mk_83", List.of("4", "5", "9", "32")),
+  MK_84          (AMMO, "weapons.bombs.Mk_84", List.of("4", "5", "9", "33")),
+  MK_82X         (AMMO, "weapons.bombs.MK_82SNAKEYE", List.of("4", "5", "9", "79")),
+  MK_82Y         (AMMO, "weapons.bombs.Mk_82Y", List.of("4", "5", "9", "298")),
+
+  // Rockets - US
+
+  ZUNI           (AMMO, "weapons.nurs.Zuni_127", List.of("4", "7", "33", "37")),
+  M151           (AMMO, "weapons.nurs.HYDRA_70_M151", List.of("4", "7", "33", "147")),
+  M5_HE          (AMMO, "weapons.nurs.HYDRA_70_MK5", List.of("4", "7", "33", "145")),
 
   ;
 

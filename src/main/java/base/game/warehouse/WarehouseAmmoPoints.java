@@ -2,6 +2,7 @@ package base.game.warehouse;
 
 import static base.game.warehouse.WarehouseAmmoPack.A_A_NORMAL;
 import static base.game.warehouse.WarehouseAmmoPack.A_A_PRO;
+import static base.game.warehouse.WarehouseAmmoPack.A_G_NORMAL;
 import static base.game.warehouse.WarehouseAmmoPack.A_G_PRO;
 import java.util.Arrays;
 import java.util.Optional;
@@ -42,6 +43,7 @@ public enum WarehouseAmmoPoints {
   AGM_154_A(A_G_PRO, WarehouseItemCode.AGM_154_A, 4),
   AGM_154_C(A_G_PRO, WarehouseItemCode.AGM_154_C, 4),
   AGM_84_D(A_G_PRO, WarehouseItemCode.AGM_84_D, 4),
+  AGM_84_E(A_G_PRO, WarehouseItemCode.AGM_84_E, 4),
 
   AGM_65_D(A_G_PRO, WarehouseItemCode.AGM_65_D, 2),
   AGM_65_E(A_G_PRO, WarehouseItemCode.AGM_65_E, 2),
@@ -63,6 +65,17 @@ public enum WarehouseAmmoPoints {
   GBU_31_V3B(A_G_PRO, WarehouseItemCode.GBU_31_V3B, 2),
   GBU_38(A_G_PRO, WarehouseItemCode.GBU_38, 2),
   AGM_62(A_G_PRO, WarehouseItemCode.AGM_62, 2),
+
+  MK_81(A_G_NORMAL, WarehouseItemCode.MK_81, 10),
+  MK_82(A_G_NORMAL, WarehouseItemCode.MK_82, 10),
+  MK_83(A_G_NORMAL, WarehouseItemCode.MK_83, 10),
+  MK_84(A_G_NORMAL, WarehouseItemCode.MK_84, 10),
+  MK_82X(A_G_NORMAL, WarehouseItemCode.MK_82X, 10),
+  MK_82Y(A_G_NORMAL, WarehouseItemCode.MK_82Y, 10),
+
+  ZUNI(A_G_NORMAL, WarehouseItemCode.ZUNI, 5),
+  M151(A_G_NORMAL, WarehouseItemCode.M151, 1),
+  M5_HE(A_G_NORMAL, WarehouseItemCode.M5_HE, 1),
 
   ;
 
