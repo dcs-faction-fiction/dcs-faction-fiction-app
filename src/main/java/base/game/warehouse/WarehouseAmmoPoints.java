@@ -18,7 +18,9 @@ public enum WarehouseAmmoPoints {
   AIM_54_A_MK_60(A_A_PRO, WarehouseItemCode.AIM_54_A_MK_60, 3),
   AIM_54_C_MK_47(A_A_PRO, WarehouseItemCode.AIM_54_C_MK_47, 3),
 
-  AIM_9_X(A_A_NORMAL, WarehouseItemCode.AIM_9_X, 1),
+  AIM_9_X(A_A_PRO, WarehouseItemCode.AIM_9_X, 1),
+  R_73(A_A_PRO, WarehouseItemCode.R_73, 1),
+
   AIM_9_P5(A_A_NORMAL, WarehouseItemCode.AIM_9_P5, 1),
   AIM_9_M(A_A_NORMAL, WarehouseItemCode.AIM_9_M, 1),
   AIM_9_L(A_A_NORMAL, WarehouseItemCode.AIM_9_L, 1),
@@ -32,7 +34,6 @@ public enum WarehouseAmmoPoints {
   R_27_R(A_A_NORMAL, WarehouseItemCode.R_27_R, 1),
   R_27_T(A_A_NORMAL, WarehouseItemCode.R_27_T, 1),
 
-  R_73(A_A_NORMAL, WarehouseItemCode.R_73, 1),
   R_60(A_A_NORMAL, WarehouseItemCode.R_60, 1),
 
   // A/G
