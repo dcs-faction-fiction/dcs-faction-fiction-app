@@ -140,7 +140,7 @@ class TestHandler {
     // Check estimation, 1 huey should cost 2c
     faction.assertBoughtWarehouseItems(session.blueFaction, Map.of(UH_1H, 1), 2);
     // Check some weapon packs
-    faction.assertBoughtWarehouseItems(session.blueFaction, Map.of(AIM_120_C, 2, AIM_9_X, 2), 6);
+    faction.assertBoughtWarehouseItems(session.blueFaction, Map.of(AIM_120_C, 2, AIM_9_X, 2), 4);
 
     assertThat("Credits are spent", faction.checkCreditsSpent(session.blueFaction, () -> {
       var unit = faction.buyUnit(session.blueFaction, BRADLEY, loc10k, true);
