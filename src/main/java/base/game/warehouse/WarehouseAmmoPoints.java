@@ -73,7 +73,7 @@ public enum WarehouseAmmoPoints {
   MK_82X(A_G_NORMAL, WarehouseItemCode.MK_82X, 10),
   MK_82Y(A_G_NORMAL, WarehouseItemCode.MK_82Y, 10),
 
-  ZUNI(A_G_NORMAL, WarehouseItemCode.ZUNI, 5),
+  ZUNI(A_G_NORMAL, WarehouseItemCode.ZUNI, 10),
   M151(A_G_NORMAL, WarehouseItemCode.M151, 1),
   M5_HE(A_G_NORMAL, WarehouseItemCode.M5_HE, 1),
 
