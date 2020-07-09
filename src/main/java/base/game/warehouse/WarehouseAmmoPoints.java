@@ -24,16 +24,19 @@ public enum WarehouseAmmoPoints {
   R_27_ET(A_A_PRO, WarehouseItemCode.R_27_ET, 2),
   R_27_ER(A_A_PRO, WarehouseItemCode.R_27_ER, 1),
 
+  MATRA_MAGIC_2(A_A_NORMAL, WarehouseItemCode.MATRA_MAGIC_2, 1),
+  MATRA_S_530_D(A_A_NORMAL, WarehouseItemCode.MATRA_S_530_D, 2),
+
   AIM_9_P5(A_A_NORMAL, WarehouseItemCode.AIM_9_P5, 1),
   AIM_9_M(A_A_NORMAL, WarehouseItemCode.AIM_9_M, 1),
   AIM_9_L(A_A_NORMAL, WarehouseItemCode.AIM_9_L, 1),
 
-  AIM_7_MH(A_A_NORMAL, WarehouseItemCode.AIM_7_MH, 1),
-  AIM_7_M(A_A_NORMAL, WarehouseItemCode.AIM_7_M, 1),
-  AIM_7_F(A_A_NORMAL, WarehouseItemCode.AIM_7_F, 1),
+  AIM_7_MH(A_A_NORMAL, WarehouseItemCode.AIM_7_MH, 2),
+  AIM_7_M(A_A_NORMAL, WarehouseItemCode.AIM_7_M, 2),
+  AIM_7_F(A_A_NORMAL, WarehouseItemCode.AIM_7_F, 2),
 
-  R_27_R(A_A_NORMAL, WarehouseItemCode.R_27_R, 1),
-  R_27_T(A_A_NORMAL, WarehouseItemCode.R_27_T, 1),
+  R_27_R(A_A_NORMAL, WarehouseItemCode.R_27_R, 2),
+  R_27_T(A_A_NORMAL, WarehouseItemCode.R_27_T, 2),
 
   R_60(A_A_NORMAL, WarehouseItemCode.R_60, 1),
 
