@@ -89,6 +89,8 @@ class TestHandler {
     faction.createFactions();
     campaign.createCampaign();
     campaign.registerFactionsToCampaign();
+    campaign.giveCredits(session.blueFaction, 30);
+    campaign.giveCredits(session.redFaction, 30);
     admin.serverAssignment();
 
     assertThrows(ServerException.class, () -> {

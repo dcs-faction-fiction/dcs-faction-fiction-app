@@ -37,7 +37,7 @@ import org.jdbi.v3.core.mapper.RowMapper;
 public class CampaignService {
 
   public static final int ZONE_SIZE_FT_START = 50_000;
-  public static final int CREDITS_START = 30;
+  public static final int CREDITS_START = 0;
 
   @Inject Jdbi jdbi;
   @Inject FlightLogService flightLog;
