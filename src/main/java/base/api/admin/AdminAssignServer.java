@@ -37,10 +37,10 @@ public class AdminAssignServer implements Endpoint {
   )
   @Override
   public void handle(Context ctx) throws Exception {
-    UUID user = requireLoggedInUserUUID(ctx);
+    var user = ctx.pathParam("user");
     var server = ctx.pathParam("server");
 
-    service.assignServerToUser(user, server);
+    service.assignServerToUser(UUID.fromString(user), server);
     ctx.status(200);
   }
 
