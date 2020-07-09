@@ -69,6 +69,11 @@ public enum WarehouseItemCode {
   R_60           (AMMO, "P_60", List.of("4", "4", "7", "331")),
   R_77           (AMMO, "P_77", List.of("4", "4", "7", "19")),
 
+  // A/A missiles - Other
+
+  MATRA_MAGIC_2  (AMMO, "P_77", List.of("4", "4", "7", "320")),
+  MATRA_S_530_D  (AMMO, "P_77", List.of("4", "4", "7", "321")),
+
   // A/G missiles - US
 
   AGM_122        (AMMO, "weapons.missiles.AGM_122", List.of("4", "4", "8", "68")),
