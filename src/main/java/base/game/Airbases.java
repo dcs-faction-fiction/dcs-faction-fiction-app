@@ -9,8 +9,8 @@ import java.util.Optional;
 public enum Airbases {
 
   ANAPA(12, "Anapa-Vityazevo", RED, CAUCASUS, Location.of("45.0045166", "37.3466833", "141")),
-  KRYMSK(14, "Krymsk", RED, CAUCASUS, Location.of("44.96881666", "37.99353333", "66")),
-  SOCHI(15, "Sochi-Adler", RED, CAUCASUS, Location.of("43.44441666", "39.94143333", "98")),
+  KRYMSK(15, "Krymsk", RED, CAUCASUS, Location.of("44.96881666", "37.99353333", "66")),
+  SOCHI(18, "Sochi-Adler", RED, CAUCASUS, Location.of("43.44441666", "39.94143333", "98")),
   MAYKOP(16, "Maykop-Khanskaya", RED, CAUCASUS, Location.of("44.67143", "40.18808", "180")),
 
 
