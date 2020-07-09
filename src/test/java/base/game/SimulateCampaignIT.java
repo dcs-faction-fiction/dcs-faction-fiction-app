@@ -33,6 +33,7 @@ import static java.math.BigDecimal.ZERO;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import static java.util.stream.Collectors.toSet;
@@ -173,6 +174,9 @@ class TestHandler {
       faction.getServerInfo();
       campaign.getServerInfo();
     });
+
+    var logs = faction.getLogs();
+    assertThat(logs, is(not(emptyString())));
   }
 }
 
@@ -195,6 +199,10 @@ class FactionActions {
     post(client, "/factionmanager-api/factions", "{\"name\":\""+session.redFaction+"\"}", "application/json", true, true, false);
     resp = get(client, "/factionmanager-api/factions", true, true, false);
     assertThat("Has faction", resp, containsString(session.redFaction));
+  }
+
+  String getLogs() {
+    return get(client, "/factionmanager-api/factions/"+session.blueFaction+"/campaigns/"+session.campaign+"/flightlog", true, true, false);
   }
 
   void assertBoughtWarehouseItems(String faction, Map<WarehouseItemCode, Integer> amounts, int credits) {

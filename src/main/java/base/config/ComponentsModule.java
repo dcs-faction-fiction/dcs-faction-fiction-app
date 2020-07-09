@@ -35,6 +35,7 @@ import base.api.factionmanager.FactionIncreaseZoneEndpoint;
 import base.api.factionmanager.FactionListCampaignsEndpoint;
 import base.api.factionmanager.FactionListEndpoint;
 import base.api.factionmanager.FactionPlaceUnitEndpoint;
+import base.api.factionmanager.FactionViewLogEndpoint;
 import base.api.factionmanager.FactionWarehouseBuyEndpoint;
 import base.api.factionmanager.FactionWarehouseGetEndpoint;
 import base.service.data.ServerInfo;
@@ -209,6 +210,12 @@ public class ComponentsModule {
   @Provides
   @IntoSet
   public Endpoint factionGetCreditsEndpoints(FactionGetCreditsEndpoints endpoint) {
+    return endpoint;
+  }
+
+  @Provides
+  @IntoSet
+  public Endpoint factionViewLogEndpoint(FactionViewLogEndpoint endpoint) {
     return endpoint;
   }
 

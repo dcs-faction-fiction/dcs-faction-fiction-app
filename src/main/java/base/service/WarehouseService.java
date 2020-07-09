@@ -8,6 +8,7 @@ import base.game.warehouse.WarehouseItemCode;
 import base.game.warehouse.WarehouseItemCost;
 import com.github.apilab.rest.exceptions.NotFoundException;
 import com.github.apilab.rest.exceptions.ServerException;
+import static java.lang.String.format;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public class WarehouseService {
   @Inject Jdbi jdbi;
   @Inject CampaignService campaignService;
   @Inject FactionService factionService;
+  @Inject FlightLogService flightLog;
 
   @Inject
   public WarehouseService() {
@@ -107,6 +109,8 @@ public class WarehouseService {
         h.execute(
           "update campaign_airfield_warehouse_item set item_quantity = item_quantity + ? where id = ?",
           e.getValue(), itemid);
+
+        flightLog.logForCampaignFaction(id, format("Bought %s %s for faction %s in campaign %s", e.getValue(), e.getKey().name(), factionName, campaignName), h);
       });
 
       h.execute("update campaign_faction set credits = greatest(0, credits - ?) where id = ?",
@@ -181,6 +185,8 @@ public class WarehouseService {
               + " set item_quantity = greatest(item_quantity + ?, 0)"
               + " where id = ?",
             amount, itemUUID);
+
+          flightLog.logForWarehouse(warehouseUUID, format("Consumed %s %s for airbase %s in campaign %s", -amount, itemCode.name(), airbase.name(), campaignName), h);
         });
       })
     );

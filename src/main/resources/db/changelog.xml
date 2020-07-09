@@ -217,4 +217,18 @@
     </addColumn>
   </changeSet>
 
+  <changeSet author="raf" id="0007_flightlog_table">
+    <createTable tableName="campaign_faction_flight_log">
+      <column name="id" type="uuid"><constraints nullable="false"/></column>
+      <column name="campaign_faction_id" type="uuid"><constraints nullable="false"/></column>
+      <column name="description" type="clob"><constraints nullable="false"/></column>
+
+      <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP" />
+      <column name="created_by" type="uuid" defaultValueComputed="uuid_nil()"/>
+      <column name="modified_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+      <column name="modified_by" type="uuid" defaultValueComputed="uuid_nil()"/>
+    </createTable>
+    <addPrimaryKey tableName="campaign_faction_flight_log" columnNames="id"/>
+  </changeSet>
+
 </databaseChangeLog>

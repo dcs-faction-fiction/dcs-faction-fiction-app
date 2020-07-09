@@ -22,6 +22,7 @@ import base.game.units.GroundUnit;
 import base.game.warehouse.WarehouseItemCode;
 import base.service.data.FactionUnit;
 import base.service.data.ImmutableFactionUnit;
+import static java.lang.String.format;
 import java.math.BigDecimal;
 import java.util.EnumMap;
 import java.util.List;
@@ -39,6 +40,7 @@ public class CampaignService {
   public static final int CREDITS_START = 30;
 
   @Inject Jdbi jdbi;
+  @Inject FlightLogService flightLog;
 
   @Inject
   public CampaignService() {
@@ -46,10 +48,29 @@ public class CampaignService {
   }
 
   public void addCreditsToFaction(String campaignName, String factionName, int credits) {
-    jdbi.useHandle(h ->
-      h.execute("update campaign_faction set credits = greatest(0, credits + ?) "
-        + "where campaign_name = ? and faction_name = ?",
-        credits, campaignName, factionName)
+    getCampaignFactionID(campaignName, factionName).ifPresent(cfid ->
+      jdbi.useHandle(h -> {
+        h.execute("update campaign_faction set credits = greatest(0, credits + ?) "
+          + "where campaign_name = ? and faction_name = ?",
+          credits, campaignName, factionName);
+
+        if (credits >= 0)
+          flightLog.logForCampaignFaction(cfid, format("Adding %s credits for faction %s in campaign %s", credits, factionName, campaignName), h);
+        else
+          flightLog.logForCampaignFaction(cfid, format("Removing %s credits for faction %s in campaign %s", -credits, factionName, campaignName), h);
+      })
+    );
+  }
+
+  public Optional<UUID> getCampaignFactionID(
+      String campaignName, String factionName) {
+    return jdbi.withHandle(h ->
+      h.select("select id from campaign_faction "
+        + "where campaign_name = ? and faction_name = ? "
+        + "for update",
+        campaignName, factionName)
+        .mapTo(UUID.class)
+        .findFirst()
     );
   }
 

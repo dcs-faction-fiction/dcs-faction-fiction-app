@@ -35,6 +35,7 @@ import base.api.factionmanager.FactionIncreaseZoneEndpoint;
 import base.api.factionmanager.FactionListCampaignsEndpoint;
 import base.api.factionmanager.FactionListEndpoint;
 import base.api.factionmanager.FactionPlaceUnitEndpoint;
+import base.api.factionmanager.FactionViewLogEndpoint;
 import base.api.factionmanager.FactionWarehouseBuyEndpoint;
 import base.api.factionmanager.FactionWarehouseGetEndpoint;
 import com.github.apilab.rest.Endpoint;
@@ -148,6 +149,10 @@ public class EndpointMappingTest {
     ep = new FactionGetCreditsEndpoints();
     ep.register(javalin);
     verify(javalin).get("/factionmanager-api/factions/:faction/campaigns/:campaign/credits", ep, Set.of(FACTION_MANAGER));
+
+    ep = new FactionViewLogEndpoint();
+    ep.register(javalin);
+    verify(javalin).get("/factionmanager-api/factions/:faction/campaigns/:campaign/flightlog", ep, Set.of(FACTION_MANAGER));
 
     // C A M P A I G N
 

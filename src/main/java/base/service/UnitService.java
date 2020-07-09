@@ -16,6 +16,7 @@ import base.service.data.ImmutableFactionUnit;
 import base.service.data.ImmutableFactionUnitPosition;
 import com.github.apilab.rest.exceptions.NotFoundException;
 import com.github.apilab.rest.exceptions.ServerException;
+import static java.lang.String.format;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
@@ -34,6 +35,7 @@ public class UnitService {
   @Inject Jdbi jdbi;
   @Inject FactionService factionService;
   @Inject CampaignService campaignService;
+  @Inject FlightLogService flightLog;
 
   @Inject
   public UnitService() {
@@ -42,15 +44,16 @@ public class UnitService {
 
   public void registerDeadUnits(List<UUID> uuids) {
     jdbi.useHandle(h ->
-      uuids.forEach(uuid ->
-        h.execute("delete from campaign_faction_units where id = ?", uuid)
-      )
+      uuids.forEach(uuid -> {
+        flightLog.logForUnit(uuid, format("Unit %s is dead.", uuid), h);
+        h.execute("delete from campaign_faction_units where id = ?", uuid);
+      })
     );
   }
 
   public void registerMovedUnits(List<ImmutableFactionUnitPosition> units) {
     jdbi.useHandle(h ->
-      units.stream().forEach(u ->
+      units.stream().forEach(u -> {
         h.execute("update campaign_faction_units set "
           + "x = ?, "
           + "y = ?, "
@@ -61,8 +64,9 @@ public class UnitService {
           u.location().latitude().toString(),
           u.location().altitude().toString(),
           u.location().angle().toString(),
-          u.id())
-      )
+          u.id());
+        flightLog.logForUnit(u.id(), format("Unit %s has moved to %s", u.id(), u.location()), h);
+      })
     );
   }
 
@@ -87,6 +91,8 @@ public class UnitService {
         + "credits = greatest(0, credits - ?) "
         + "where id = ?",
         INCREASE_ZONE_SIZE_INCREASE, INCREASE_ZONE_COST, cfid);
+
+      flightLog.logForCampaignFaction(cfid, format("Zone increased for faction %s in campaign %s", factionName, campaignName), h);
     });
   }
 
@@ -111,6 +117,8 @@ public class UnitService {
         + "credits = greatest(0, credits + ?) "
         + "where id = ?",
         DECREASE_ZONE_SIZE_DECREASE, DECREASE_ZONE_GAIN, cfid);
+
+      flightLog.logForCampaignFaction(cfid, format("Zone shrank for faction %s in campaign %s", factionName, campaignName), h);
     });
   }
 
@@ -172,10 +180,13 @@ public class UnitService {
           + "values(?, ?, ?, ?, ?, ?, ?)",
           uid, cfid, unit, location.longitude(), location.latitude(), location.altitude(), location.angle());
         enforceUnitRadiusFromAirbase(h, campaignName, factionName, airbase, uid, location);
+
+        flightLog.logForCampaignFaction(cfid, format("Unit created for faction %s in campaign %s: %s at %s", factionName, campaignName, uid, location), h);
       }
 
       h.execute("update campaign_faction set credits = greatest(0, credits - ?) where id = ?",
         unit.cost(), cfid);
+
     });
   }
 
@@ -205,6 +216,8 @@ public class UnitService {
           location.longitude(), location.latitude(), location.altitude(), location.angle(),
           uid, cfid);
       }
+
+      flightLog.logForCampaignFaction(cfid, format("Unit moved for faction %s in campaign %s: %s at %s", factionName, campaignName, uid, location), h);
     });
   }
 
