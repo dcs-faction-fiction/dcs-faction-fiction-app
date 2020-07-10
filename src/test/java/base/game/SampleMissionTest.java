@@ -27,7 +27,7 @@ public class SampleMissionTest {
 
   @Test
   public void testSampleMission() throws IOException {
-    var builder = new FullMissionBuilder();
+    var builder = new APIFullMissionBuilder();
     var unitService = mock(UnitService.class);
     var campaignService = mock(CampaignService.class);
     var warehouseService = mock(WarehouseService.class);
@@ -56,7 +56,7 @@ public class SampleMissionTest {
     var out = new ByteArrayOutputStream();
     builder.build("campaign1", out);
 
-    assertThrows(ServerException.class, () -> {
+    assertThrows(RuntimeException.class, () -> {
       builder.build("campaign1", new OutputStream() {
         @Override
         public void write(int b) throws IOException {

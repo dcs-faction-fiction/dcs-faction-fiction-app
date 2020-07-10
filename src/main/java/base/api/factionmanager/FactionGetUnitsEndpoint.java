@@ -3,7 +3,7 @@ package base.api.factionmanager;
 import static base.api.auth.Roles.FACTION_MANAGER;
 import base.service.FactionService;
 import base.service.UnitService;
-import base.service.data.FactionUnit;
+import base.game.FactionUnit;
 import com.github.apilab.rest.Endpoint;
 import io.javalin.Javalin;
 import static io.javalin.core.security.SecurityUtil.roles;

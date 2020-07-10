@@ -2,7 +2,7 @@ package base.api.campaignmanager.data;
 
 import base.api.factionmanager.data.FactionCampaignComboPayload;
 import base.api.factionmanager.data.InventoryWarehousePayload;
-import base.service.data.FactionUnit;
+import base.game.FactionUnit;
 import java.util.List;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;

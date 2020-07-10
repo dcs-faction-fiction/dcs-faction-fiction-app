@@ -3,17 +3,18 @@ package base.service;
 import base.game.Airbases;
 import base.game.CampaignCoalition;
 import static base.game.CampaignCoalition.BLUE;
+import base.game.FactionUnit;
 import static base.game.GameValues.DECREASE_ZONE_GAIN;
 import static base.game.GameValues.DECREASE_ZONE_SIZE_DECREASE;
 import static base.game.GameValues.INCREASE_ZONE_COST;
 import static base.game.GameValues.INCREASE_ZONE_SIZE_INCREASE;
 import static base.game.GameValues.ZONE_MIN_SIZE;
+import base.game.ImmutableFactionUnit;
+import base.game.ImmutableFactionUnitPosition;
 import base.game.ImmutableLocation;
 import base.game.Location;
 import base.game.units.GroundUnit;
-import base.service.data.FactionUnit;
-import base.service.data.ImmutableFactionUnit;
-import base.service.data.ImmutableFactionUnitPosition;
+import base.game.units.GroundUnitCost;
 import com.github.apilab.rest.exceptions.NotFoundException;
 import com.github.apilab.rest.exceptions.ServerException;
 import static java.lang.String.format;
@@ -151,7 +152,7 @@ public class UnitService {
 
   public void buyUnit(
     String campaignName, String factionName, Airbases airbase,
-    GroundUnit unit, Location location) {
+    GroundUnitCost unit, Location location) {
 
     LOG.info("{} is spending in {}, using {} to get {} {} at {}",
       kv("faction", factionName),

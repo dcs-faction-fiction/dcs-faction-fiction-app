@@ -4,7 +4,6 @@ import base.Main;
 import static base.api.EndpointCallerMethods.get;
 import static base.api.EndpointCallerMethods.post;
 import com.github.apilab.rest.exceptions.ServerException;
-import io.prometheus.client.CollectorRegistry;
 import java.io.IOException;
 import okhttp3.OkHttpClient;
 import static org.hamcrest.CoreMatchers.is;

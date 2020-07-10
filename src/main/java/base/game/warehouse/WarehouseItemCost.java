@@ -27,9 +27,13 @@ public enum WarehouseItemCost {
     return cost;
   }
 
+  public WarehouseItemCategory category() {
+    return category;
+  }
+
   public static Optional<WarehouseItemCost> fromCategory(WarehouseItemCategory category) {
     return Arrays.asList(values()).stream()
-      .filter(o -> o.category == category)
+      .filter(o -> o.category() == category)
       .findFirst();
   }
 

@@ -1,7 +1,7 @@
 package base.api.campaignmanager;
 
 import static base.api.auth.Roles.CAMPAIGN_MANAGER;
-import base.game.FullMissionBuilder;
+import base.game.APIFullMissionBuilder;
 import com.github.apilab.rest.Endpoint;
 import io.javalin.Javalin;
 import static io.javalin.core.security.SecurityUtil.roles;
@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 public class CampaignDownloadCurrentMissionEndpoint implements Endpoint {
 
-  @Inject FullMissionBuilder missionBuilder;
+  @Inject APIFullMissionBuilder missionBuilder;
 
   @Inject
   public CampaignDownloadCurrentMissionEndpoint() {

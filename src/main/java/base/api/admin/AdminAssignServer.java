@@ -1,7 +1,6 @@
 package base.api.admin;
 
 import static base.api.auth.Roles.ADMIN;
-import static base.config.EndpointLoginFetcher.requireLoggedInUserUUID;
 import base.service.AdminService;
 import com.github.apilab.rest.Endpoint;
 import io.javalin.Javalin;

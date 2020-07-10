@@ -1,7 +1,7 @@
 package base.api.campaignmanager;
 
 import static base.api.auth.Roles.CAMPAIGN_MANAGER;
-import base.game.FullMissionBuilder;
+import base.game.APIFullMissionBuilder;
 import base.service.CampaignService;
 import base.service.ServerService;
 import com.github.apilab.rest.Endpoint;
@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 public class CampaignStartServerEndpoint implements Endpoint {
 
-  @Inject FullMissionBuilder missionBuilder;
+  @Inject APIFullMissionBuilder missionBuilder;
   @Inject ServerService server;
   @Inject CampaignService campaignService;
 
