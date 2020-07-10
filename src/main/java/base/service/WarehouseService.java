@@ -128,8 +128,7 @@ public class WarehouseService {
         + " i.item_quantity qty"
         + " from campaign_airfield_warehouse_item i"
         + " left join campaign_airfield_warehouse w on i.warehouse_id = w.id"
-        + " left join campaign_faction cf on w.campaign_name = cf.campaign_name"
-        + " left join faction f on cf.faction_name = f.name"
+        + " left join campaign_faction cf on w.campaign_name = cf.campaign_name and w.airbase = cf.airbase"
         + " where w.campaign_name = ? and cf.faction_name = ? and cf.airbase = ?",
         campaignName, factionName, airbase)
         .mapToMap()
