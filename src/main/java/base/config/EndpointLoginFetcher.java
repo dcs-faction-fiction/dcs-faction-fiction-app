@@ -1,5 +1,6 @@
 package base.config;
 
+import static com.github.apilab.rest.auth.JavalinJWTFilter.REQ_ATTR_ROLES;
 import static com.github.apilab.rest.auth.JavalinJWTFilter.REQ_ATTR_SUBJECT;
 import com.github.apilab.rest.exceptions.NotAuthenticatedException;
 import io.javalin.http.Context;

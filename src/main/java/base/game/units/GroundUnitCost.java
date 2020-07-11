@@ -2,6 +2,9 @@ package base.game.units;
 
 public enum GroundUnitCost {
 
+  AWACS        (GroundUnit.AWACS,           1, 3),
+  TANKER       (GroundUnit.TANKER,          1, 1),
+
   // TANKS
   ABRAMS       (GroundUnit.ABRAMS,          2, 1),
   T_80         (GroundUnit.T_80,            2, 1),
