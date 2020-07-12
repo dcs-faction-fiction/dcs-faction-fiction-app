@@ -13,8 +13,8 @@ import base.game.ImmutableFactionUnit;
 import base.game.ImmutableFactionUnitPosition;
 import base.game.ImmutableLocation;
 import base.game.Location;
-import base.game.units.GroundUnit;
-import base.game.units.GroundUnitCost;
+import base.game.units.Unit;
+import base.game.units.UnitCost;
 import com.github.apilab.rest.exceptions.NotFoundException;
 import com.github.apilab.rest.exceptions.ServerException;
 import static java.lang.String.format;
@@ -138,7 +138,7 @@ public class UnitService {
           ImmutableFactionUnit
             .builder()
             .id(UUID.fromString(r.getString(1)))
-            .type(GroundUnit.valueOf(r.getString(2)))
+            .type(Unit.valueOf(r.getString(2)))
             .location(ImmutableLocation.builder()
               .longitude(new BigDecimal(r.getString(3)))
               .latitude(new BigDecimal(r.getString(4)))
@@ -152,7 +152,7 @@ public class UnitService {
 
   public void buyUnit(
     String campaignName, String factionName, Airbases airbase,
-    GroundUnitCost unit, Location location) {
+    UnitCost unit, Location location) {
 
     LOG.info("{} is spending in {}, using {} to get {} {} at {}",
       kv("faction", factionName),
@@ -262,7 +262,7 @@ public class UnitService {
           ImmutableFactionUnit
             .builder()
             .id(UUID.fromString(r.getString(1)))
-            .type(GroundUnit.valueOf(r.getString(2)))
+            .type(Unit.valueOf(r.getString(2)))
             .location(ImmutableLocation.builder()
               .longitude(new BigDecimal(r.getString(3)))
               .latitude(new BigDecimal(r.getString(4)))

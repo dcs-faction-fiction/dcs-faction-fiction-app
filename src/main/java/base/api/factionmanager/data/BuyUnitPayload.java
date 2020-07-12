@@ -1,7 +1,7 @@
 package base.api.factionmanager.data;
 
 import base.game.Location;
-import base.game.units.GroundUnitCost;
+import base.game.units.UnitCost;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
@@ -9,6 +9,6 @@ import org.immutables.value.Value;
 @Gson.TypeAdapters
 @Value.Style(jdkOnly = true)
 public interface BuyUnitPayload {
-  GroundUnitCost type();
+  UnitCost type();
   Location location();
 }

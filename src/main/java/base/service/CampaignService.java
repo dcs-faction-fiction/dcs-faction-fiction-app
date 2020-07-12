@@ -20,8 +20,7 @@ import static base.game.CampaignState.PREPARING;
 import base.game.FactionUnit;
 import base.game.ImmutableFactionUnit;
 import base.game.ImmutableLocation;
-import base.game.units.GroundUnit;
-import base.game.units.GroundUnitCost;
+import base.game.units.Unit;
 import base.game.warehouse.WarehouseItemCode;
 import static java.lang.String.format;
 import java.math.BigDecimal;
@@ -224,7 +223,7 @@ public class CampaignService {
         ImmutableFactionUnit
           .builder()
           .id(UUID.fromString(r.getString(1)))
-          .type(GroundUnit.valueOf(r.getString(2)))
+          .type(Unit.valueOf(r.getString(2)))
           .location(ImmutableLocation.builder()
             .longitude(new BigDecimal(r.getString(3)))
             .latitude(new BigDecimal(r.getString(4)))

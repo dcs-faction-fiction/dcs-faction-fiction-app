@@ -1,7 +1,7 @@
 package base.api.data;
 
 import base.game.Airbases;
-import base.game.units.GroundUnitCost;
+import base.game.units.UnitCost;
 import base.game.warehouse.WarehouseItemCode;
 
 public class EnumsPayload {
@@ -10,6 +10,6 @@ public class EnumsPayload {
 
   public final Airbases[] airbases = Airbases.values();
   public final WarehouseItemCode[] warehouseItems = WarehouseItemCode.values();
-  public final GroundUnitCost[] units = GroundUnitCost.values();
+  public final UnitCost[] units = UnitCost.values();
 
 }

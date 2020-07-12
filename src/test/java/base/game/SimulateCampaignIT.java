@@ -16,9 +16,8 @@ import static base.game.GameValues.DECREASE_ZONE_GAIN;
 import static base.game.GameValues.INCREASE_ZONE_COST;
 import static base.game.SimulateCampaignIT.client;
 import static base.game.SimulateCampaignIT.gson;
-import base.game.units.GroundUnit;
-import base.game.units.GroundUnit;
-import static base.game.units.GroundUnit.BRADLEY;
+import base.game.units.Unit;
+import static base.game.units.Unit.BRADLEY;
 import base.game.warehouse.WarehouseItemCode;
 import static base.game.warehouse.WarehouseItemCode.AIM_120_C;
 import static base.game.warehouse.WarehouseItemCode.AIM_9_X;
@@ -272,7 +271,7 @@ class FactionActions {
       .build();
   }
 
-  FactionUnit buyUnit(String faction, GroundUnit unit, Location location, boolean checkLocation) {
+  FactionUnit buyUnit(String faction, Unit unit, Location location, boolean checkLocation) {
     var resp = get(client, "/factionmanager-api/factions/"+faction+"/campaigns/"+session.campaign+"/units", true, true, false);
     var originalUnitIds = Arrays.asList(gson.fromJson(resp, ImmutableFactionUnit[].class))
       .stream().map(ImmutableFactionUnit::id).collect(toSet());
@@ -304,7 +303,7 @@ class FactionActions {
     return newUnit;
   }
 
-  String unitToJson(GroundUnit unit, Location location) {
+  String unitToJson(Unit unit, Location location) {
     return "{\"type\":\""+unit.name()+"\", \"location\":"+locationToJson(location)+"}";
   }
 
