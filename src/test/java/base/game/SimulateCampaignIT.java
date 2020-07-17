@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import static java.util.stream.Collectors.toSet;
 import okhttp3.OkHttpClient;
@@ -143,13 +144,13 @@ class TestHandler {
 
     assertThat("Credits are spent", faction.checkCreditsSpent(session.blueFaction, () -> {
       var unit = faction.buyUnit(session.blueFaction, BRADLEY, loc10k, true);
-      session.unitIds.put("bradleyid", unit.id().toString());
+      session.unitIds.put("bradleyid", unit.id().get().toString());
 
       unit = faction.buyUnit(session.blueFaction, BRADLEY, loc60k, true);
-      session.unitIds.put("bradleyid2", unit.id().toString());
+      session.unitIds.put("bradleyid2", unit.id().get().toString());
 
       unit = faction.buyUnit(session.blueFaction, BRADLEY, loc200k, false);
-      session.unitIds.put("bradleyid3", unit.id().toString());
+      session.unitIds.put("bradleyid3", unit.id().get().toString());
     }), is(3));
     var unit = faction.moveUnit(session.blueFaction, session.unitIds.get("bradleyid"), loc12k);
     assertThat("Moved unit", unit.location(), is(loc12k));
@@ -274,13 +275,13 @@ class FactionActions {
   FactionUnit buyUnit(String faction, Unit unit, Location location, boolean checkLocation) {
     var resp = get(client, "/factionmanager-api/factions/"+faction+"/campaigns/"+session.campaign+"/units", true, true, false);
     var originalUnitIds = Arrays.asList(gson.fromJson(resp, ImmutableFactionUnit[].class))
-      .stream().map(ImmutableFactionUnit::id).collect(toSet());
+      .stream().map(ImmutableFactionUnit::id).map(Optional::get).collect(toSet());
 
     post(client, "/factionmanager-api/factions/"+faction+"/campaigns/"+session.campaign+"/units", unitToJson(unit, location), "application/json", true, true, false);
 
     resp = get(client, "/factionmanager-api/factions/"+faction+"/campaigns/"+session.campaign+"/units", true, true, false);
     var units = Arrays.asList(gson.fromJson(resp, ImmutableFactionUnit[].class));
-    var newUnit = units.stream().filter(e -> !originalUnitIds.contains(e.id())).findFirst().get();
+    var newUnit = units.stream().filter(e -> !originalUnitIds.contains(e.id().get())).findFirst().get();
 
     assertThat("Unit type", newUnit.type(), is(unit));
     if (checkLocation) {
@@ -299,7 +300,7 @@ class FactionActions {
     put(client, "/factionmanager-api/factions/"+faction+"/campaigns/"+session.campaign+"/units/"+id, locationToJson(location), "application/json", true, true, false);
     var resp = get(client, "/factionmanager-api/factions/"+faction+"/campaigns/"+session.campaign+"/units", true, true, false);
     var units = Arrays.asList(gson.fromJson(resp, ImmutableFactionUnit[].class));
-    var newUnit = units.stream().filter(e -> e.id().toString().equals(id)).findFirst().get();
+    var newUnit = units.stream().filter(e -> e.id().get().toString().equals(id)).findFirst().get();
     return newUnit;
   }
 
@@ -426,7 +427,7 @@ class DaemonActions {
       "/factionmanager-api/factions/"+session.blueFaction+"/campaigns/"+session.campaign+"/units",
       true, true, false);
     var units = Arrays.asList(gson.fromJson(resp, ImmutableFactionUnit[].class));
-    var dead = units.stream().filter(e -> e.id().toString().equals(bradleyid)).findFirst().isEmpty();
+    var dead = units.stream().filter(e -> e.id().get().toString().equals(bradleyid)).findFirst().isEmpty();
     assertThat("Bradley is dead",dead, is(true));
     post(client,
       "/daemon-api/"+session.server+"/movedunits",
@@ -442,7 +443,7 @@ class DaemonActions {
       true, true, false);
     units = Arrays.asList(gson.fromJson(resp, ImmutableFactionUnit[].class));
     var bradley2 = units.stream()
-      .filter(e -> e.id().toString().equals(bradleyid2))
+      .filter(e -> e.id().get().toString().equals(bradleyid2))
       .findFirst().get();
     assertThat("Bradley2 is moved", bradley2.location().latitude(), is(new BigDecimal("5")));
     assertThat("Bradley2 is moved", bradley2.location().longitude(), is(new BigDecimal("6")));
