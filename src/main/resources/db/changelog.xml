@@ -232,7 +232,7 @@
   </changeSet>
 
   <changeSet author="raf" id="0008_campaign_faction_game_options">
-    <addColumn tableName="campaign_faction">
+    <addColumn tableName="campaign">
       <column name="game_options" type="clob"/>
     </addColumn>
   </changeSet>
